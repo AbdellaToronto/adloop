@@ -35,6 +35,7 @@ Thumbs.db
 credentials.json
 token.json
 *.pem
+.local/
 
 # Test / coverage
 .pytest_cache/

@@ -65,6 +65,41 @@ AdLoop manages real ad spend, so safety is not optional.
 
 ## Setup
 
+## Local Quick Start For This Fork
+
+This fork includes helper scripts so you can keep everything repo-local instead
+of managing files in `~/.adloop`.
+
+```bash
+./scripts/run-local-mcp.sh
+```
+
+What happens on the first run:
+
+1. Creates `.venv/` and installs the project
+2. Creates `.local/config.yaml` from `config.local.example.yaml`
+3. Checks for missing credentials and config values
+4. Starts the MCP server when the local setup is complete
+
+For Cursor or any MCP client that launches a command for you, point it at:
+
+```json
+{
+  "mcpServers": {
+    "adloop": {
+      "command": "/absolute/path/to/adloop/scripts/run-local-mcp.sh"
+    }
+  }
+}
+```
+
+Local state created by the scripts:
+
+- `.local/config.yaml`
+- `.local/credentials.json`
+- `.local/token.json`
+- `.local/audit.log`
+
 ### Requirements
 
 - Python 3.11+
