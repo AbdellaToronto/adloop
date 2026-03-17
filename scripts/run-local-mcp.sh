@@ -6,9 +6,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 cd "$ROOT_DIR"
 
-"$ROOT_DIR/scripts/bootstrap-local.sh"
+"$ROOT_DIR/scripts/bootstrap-local.sh" >&2
 
-if ! "$ROOT_DIR/scripts/doctor-local.sh"; then
+if ! "$ROOT_DIR/scripts/doctor-local.sh" >&2; then
   cat <<'EOF' >&2
 
 Finish these manual steps before starting AdLoop:

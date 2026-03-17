@@ -7,4 +7,5 @@ def main() -> None:
     """Entry point for `adloop` console script."""
     from adloop.server import mcp
 
-    mcp.run()
+    # StdIO MCP clients need stdout reserved for JSON-RPC only.
+    mcp.run(show_banner=False, log_level="ERROR")
