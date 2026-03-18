@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from google.protobuf.field_mask_pb2 import FieldMask
+
 if TYPE_CHECKING:
     from adloop.config import AdLoopConfig
 
@@ -680,9 +682,7 @@ def _apply_status_change(
         raise ValueError(f"Unknown entity_type: {entity_type}")
 
     # Build field mask for the status field only
-    field_mask = client.get_type("FieldMask")
-    field_mask.paths.append("status")
-    client.copy_from(operation.update_mask, field_mask)
+    operation.update_mask.CopyFrom(FieldMask(paths=["status"]))
 
     response = mutate(customer_id=cid, operations=[operation])
     return {"resource_name": response.results[0].resource_name}
